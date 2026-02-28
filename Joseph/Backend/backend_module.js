@@ -162,29 +162,58 @@ export async function submitUserData(userData, userID = null) {
 
   let data, error;
 
-  if (userID == null) {
-    ({ data, error } = await supabase.from("users").insert(fields).select());
+  // if our user ID isn't null, update the row and return
+  if (userID != null) {
+    ({ data, error } = await supabase.from("users").update(fields).eq("id", userID).select());
 
     if (error) {
       console.error("Error inserting data:", error);
       return null;
     }
     console.log("Data successfully inserted");
+    return data[0].id;
+  }
+
+  // if not, then check the data for a matching name, and either update matching row or insert new row
+  ({ data, error } = await supabase
+    .from("users")
+    .eq("full_name", fields.full_name)
+    .select());
+
+  if (error) {
+    console.error("Error checking for matching data:", error);
+    return null;
+  } else if (data.length === 0) {
+    ({ data, error } = await supabase
+      .from("users")
+      .insert(fields)
+      .select());
+
+    if (error) {
+      console.error("Error inserting data:", error);
+      return null;
+      }
+
+    console.log(`successfully inserted data at row ${data.id}`)
+    return data.id
   } else {
     ({ data, error } = await supabase
       .from("users")
       .update(fields)
-      .eq("id", userID)
+      .eq("full_name", fields.full_name)
       .select());
 
     if (error) {
-      console.error("Error updating data:", error);
+      console.error(`Error updating data for user ${fields.user}`, error);
       return null;
     }
-    console.log("Data successfully updated");
-  }
 
-  return data[0].id;
+    console.log(`successfully updated data at row ${data.id}`)
+    return data.id
+  }
+  
+
+  
 }
 
 export async function makeLocationConnections(userID) {
