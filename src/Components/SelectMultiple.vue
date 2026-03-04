@@ -97,6 +97,12 @@ input {
   cursor: pointer;
   margin-left: 8px;
   height: 36px;
+
+  @media (max-width: 450px) {
+    max-width: 90%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
 }
 
 .remove-button {

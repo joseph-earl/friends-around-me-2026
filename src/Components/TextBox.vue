@@ -37,8 +37,21 @@ input {
   padding: 8px;
   border: 1px solid var(--color-primary);
   border-radius: 4px;
-  width: 350px;
+  min-width: 350px;
   box-sizing: border-box;
+
+  @media (max-width: 850px) {
+    min-width: 500px;
+  }
+  @media (max-width: 650px) {
+    min-width: 400px;
+  }
+  @media (max-width: 500px) {
+    min-width: 350px;
+  }
+  @media (max-width: 400px) {
+    min-width: 325px;
+  }
 }
 </style> -->
 

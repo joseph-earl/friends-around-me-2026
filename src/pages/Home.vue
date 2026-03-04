@@ -4,7 +4,7 @@ import FriendsAroundMeForm from "../Components/FriendsAroundMeForm.vue";
 </script>
 
 <template>
-  <div>
+  <div class="home-wrapper">
     <!-- Let them know their data will be deleted -->
     <div class="home-header">
       <h1>Friends Around Me!</h1>
@@ -12,7 +12,7 @@ import FriendsAroundMeForm from "../Components/FriendsAroundMeForm.vue";
     <div class="home-subheader">
       <p>
         Using information about your High School, Mission (if applicable), and
-        languages spoke, we can find friends around you!
+        the languages you speak, we can find friends around you!
       </p>
     </div>
     <div class="form-container">
@@ -22,11 +22,22 @@ import FriendsAroundMeForm from "../Components/FriendsAroundMeForm.vue";
 </template>
 
 <style scoped>
+.home-wrapper {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home-header {
   text-align: center;
   margin-top: 1.5em;
   font-size: 2.5em;
   color: var(--color-primary);
+
+  @media (max-width: 450px) {
+    font-size: 1.8em;
+  }
 }
 
 .home-subheader {
@@ -36,11 +47,19 @@ import FriendsAroundMeForm from "../Components/FriendsAroundMeForm.vue";
   max-width: 40em;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 450px) {
+    max-width: 90%;
+  }
 }
 
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 90%;
+
+  @media (max-width: 400px) {
+  }
 }
 </style>

@@ -99,13 +99,23 @@ function goHome() {
   border: none;
   position: absolute;
   top: 6em;
-  left: 36%;
+  left: calc(50% - 200px);
+
+  @media (max-width: 450px) {
+    position: static;
+    border-bottom: 2px solid #e0e0e0;
+  }
 }
 .location-connections {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .results-container {
   padding: 2rem;
@@ -116,6 +126,10 @@ function goHome() {
 
 .results-content {
   margin-top: 20em;
+
+  @media (max-width: 450px) {
+    margin-top: 2.5em;
+  }
 }
 
 .result-item {
@@ -124,6 +138,10 @@ function goHome() {
   padding: 0.5rem;
   border-bottom: 1px solid #e0e0e0;
   height: 18em;
+
+  @media (max-width: 450px) {
+    margin: 0;
+  }
 }
 
 .label {
